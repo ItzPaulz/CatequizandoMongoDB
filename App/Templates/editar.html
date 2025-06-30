@@ -1,0 +1,26 @@
+<!-- Agrega dentro del <head> -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Dentro del <body> -->
+<h1 class="text-center text-warning mb-4">Editar Catequizando</h1>
+
+<form method="POST" action="{{ url_for('editar', id=catequizando['_id']) }}" class="p-4 bg-white shadow rounded mx-auto" style="max-width: 600px;">
+    Nombre: <input type="text" name="nombre" value="{{ catequizando['nombre'] }}" class="form-control" required><br>
+    Fecha Nacimiento: <input type="date" name="fecha_nac" value="{{ catequizando['fecha_nac'] }}" class="form-control" required><br>
+    Cédula: <input type="text" name="cedula" value="{{ catequizando['cedula'] }}" class="form-control" required><br>
+    Dirección: <input type="text" name="direccion" value="{{ catequizando['direccion'] }}" class="form-control" required><br>
+    Parroquia ID: <input type="text" name="parroquia_id" value="{{ catequizando['parroquia_id'] }}" class="form-control" required><br>
+    <!-- Campos para el representante principal -->
+    Nombre Representante: <input type="text" name="rep_nombre" value="{{ catequizando['representantes'][0]['nombre'] }}" class="form-control" required><br>
+    Parentesco: <input type="text" name="rep_parentesco" value="{{ catequizando['representantes'][0]['parentesco'] }}" class="form-control" required><br>
+    Teléfono: <input type="text" name="rep_telefono" value="{{ catequizando['representantes'][0]['telefono'] }}" class="form-control" required><br>
+    <button type="submit" class="btn btn-warning">🔄 Actualizar</button>
+    <a href="{{ url_for('index') }}" class="btn btn-secondary">Cancelar</a>
+</form>
+
+<h2 class="mt-4">Representantes</h2>
+<ul class="list-group">
+    {% for r in representantes %}
+    <li class="list-group-item">{{ r[1] }} - {{ r[2] }} - {{ r[3] }}</li>
+    {% endfor %}
+</ul>
