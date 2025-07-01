@@ -14,9 +14,17 @@ mongo = PyMongo(app)
 
 # ======== RUTAS PRINCIPALES ========
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    catequizandos = mongo.db.catequizando.find()
+    query = {}
+    if request.method == 'POST':
+        cedula = request.form.get('buscar_cedula', '').strip()
+        nombre = request.form.get('buscar_nombre', '').strip()
+        if cedula:
+            query['cedula'] = cedula
+        if nombre:
+            query['nombre'] = {'$regex': nombre, '$options': 'i'}
+    catequizandos = mongo.db.catequizando.find(query)
     return render_template('index.html', catequizandos=catequizandos)
 
 @app.route('/registro', methods=['GET', 'POST'])

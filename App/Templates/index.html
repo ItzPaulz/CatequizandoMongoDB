@@ -6,6 +6,18 @@
 
 <a href="{{ url_for('crear') }}" class="btn btn-success mb-3">➕ Crear nuevo</a>
 
+<form method="POST" class="row g-3 mb-4">
+    <div class="col-auto">
+        <input type="text" name="buscar_cedula" class="form-control" placeholder="Buscar por cédula">
+    </div>
+    <div class="col-auto">
+        <input type="text" name="buscar_nombre" class="form-control" placeholder="Buscar por nombre">
+    </div>
+    <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">Buscar</button>
+    </div>
+</form>
+
 <table class="table table-bordered table-striped">
     <thead class="table-light">
         <tr>
